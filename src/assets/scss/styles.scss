@@ -10,7 +10,9 @@ trong filder style sẽ import base, components, page, template ...
 @import './components/header';
 @import './components/carousel';
 @import './components/product';
+@import './components/footer';
 
 @import './pages/home';
 @import './pages/login';
 @import './pages/register';
+@import './pages/detail';

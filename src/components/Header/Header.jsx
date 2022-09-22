@@ -4,23 +4,22 @@ import { NavLink } from 'react-router-dom';
 export default function Header() {
   return (
     <header className="header fixed-top">
-      {/* navbar */}
       <div className="header-nav">
         <nav className="navbar">
           <div className="container">
             <NavLink className="navbar-brand header-left" to="/">
-              <img src="./img/image 3.png" alt="hinhanh" />
+              <img src="image3.png" alt="hinhanh" />
             </NavLink>
             <div className="header-right">
-              <NavLink className="header-search header-right_cart" to="/">
+              <NavLink className="header-search header-right_cart" to="/search">
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <span className="header-right_search_text header-right_cart_count">Search</span>
               </NavLink>
-              <NavLink className="header-right_cart" to="/">
+              <NavLink className="header-right_cart" to="/carts">
                 <i className="fa-solid fa-cart-arrow-down" />
                 <span className="header-right_cart_count">(1)</span>
               </NavLink>
-              <NavLink className="header-right_text" id="login" to="/">
+              <NavLink className="header-right_text" id="login" to="/login">
                 Login
               </NavLink>
               <NavLink className="header-right_text" to="/register">

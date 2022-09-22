@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { http } from '../../util/config';
 
 const initialState = {
-  arrProduct: [],
+  arrProduct: ['abc'],
 };
 
 const productReducer = createSlice({
@@ -26,8 +27,9 @@ export const getProductApi = () => {
     try {
       //call api
       const result = await http.get('/Product');
-      //lay du lieu ve dua len redux
-      console.log(result);
+
+      // //lay du lieu ve dua len redux
+      // console.log(result);
       const action = setArrProductAction(result.data.content);
       dispatch(action);
     } catch (err) {
