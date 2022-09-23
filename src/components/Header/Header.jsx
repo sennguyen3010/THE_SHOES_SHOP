@@ -1,7 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { setAmount } from '../../redux/reducers/productReducer';
 
 export default function Header() {
+  const { productCart } = useSelector((state) => state.productReducer);
+  // console.log(productCart);
+  const dispatch = useDispatch();
+  // const action = setAmount
   return (
     <header className="header fixed-top">
       <div className="header-nav">
@@ -17,7 +23,7 @@ export default function Header() {
               </NavLink>
               <NavLink className="header-right_cart" to="/carts">
                 <i className="fa-solid fa-cart-arrow-down" />
-                <span className="header-right_cart_count">(1)</span>
+                <span className="header-right_cart_count">({productCart.number})</span>
               </NavLink>
               <NavLink className="header-right_text" id="login" to="/login">
                 Login
