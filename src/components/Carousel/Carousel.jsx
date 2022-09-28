@@ -1,4 +1,5 @@
 import React from 'react';
+import { images } from '../../assets/img';
 
 export default function Carousel() {
   return (
@@ -98,7 +99,7 @@ export default function Carousel() {
             data-bs-slide="prev"
           >
             <span className="carousel-btn_icon" aria-hidden="true">
-              <img src="./img/Polygon 2.png" alt="button" />
+              <img src={images.pre} alt="button" />
             </span>
             <span className="visually-hidden">Previous</span>
           </button>
@@ -109,7 +110,7 @@ export default function Carousel() {
             data-bs-slide="next"
           >
             <span className="carousel-btn_icon" aria-hidden="true">
-              <img src="./img/Polygon 1.png" alt="button" />
+              <img src={images.next} alt="button" />
             </span>
             <span className="visually-hidden">Next</span>
           </button>

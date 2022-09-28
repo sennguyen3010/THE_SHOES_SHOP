@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setAmount } from '../../redux/reducers/productReducer';
+import { images } from '../../assets/img';
 
 export default function Header() {
   const { productCart } = useSelector((state) => state.productReducer);
@@ -14,7 +15,7 @@ export default function Header() {
         <nav className="navbar">
           <div className="container">
             <NavLink className="navbar-brand header-left" to="/">
-              <img src="image3.png" alt="hinhanh" />
+              <img src={images.logo} alt="hinhanh" />
             </NavLink>
             <div className="header-right">
               <NavLink className="header-search header-right_cart" to="/search">

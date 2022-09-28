@@ -48,11 +48,14 @@ export const configs = {
   },
   ACCESS_TOKEN: 'accessToken',
   USER_LOGIN: 'userLogin',
+  USER_SIGNUP: 'userSignup',
+  // TOKEN_FB: 'tokenFb',
 };
 
 export const {
   ACCESS_TOKEN,
   USER_LOGIN,
+  USER_SIGNUP,
   getCookie,
   setCookie,
   getStore,
