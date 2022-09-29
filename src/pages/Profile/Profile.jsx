@@ -1,5 +1,13 @@
 import React from 'react';
 
 export default function Profile() {
-  return <div>Profile</div>;
+  return (
+    <section className="profile">
+      <div className="container">
+        <div className="profile-layout">
+          <h2 className="productFeature-title">Profile</h2>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,0 +1,70 @@
+@import '../themes/variable';
+@import '../themes/mixin';
+
+.carts {
+  margin-top: 200px;
+}
+.carts-title {
+  margin-bottom: 50px;
+}
+.carts-thead {
+  background-color: #d9d9d9;
+}
+
+.carts-check {
+  border-color: #6200ee;
+}
+.carts-check:checked {
+  background-color: #6200ee;
+  border-color: #6200ee;
+}
+
+.carts-check:focus {
+  box-shadow: none;
+  border-color: #6200ee;
+}
+
+.carts-img {
+  width: 85px;
+}
+.carts-btn-count {
+  width: 30px;
+  border: none;
+  background-color: #6200ee;
+  color: $text-c2-light;
+  border-radius: 5px;
+  padding: 2px;
+  margin: 0;
+}
+.carts-amount {
+  margin: 20px;
+  background-color: #d9d9d9;
+  padding: 2px 25px;
+}
+
+.carts-btn-action {
+  width: 45%;
+  @include text(14px, $text-medium, $text-c2-light);
+  padding: 6px;
+}
+
+.carts-btn-del {
+  background-color: #eb5757;
+
+  &:hover {
+    // background-color: #8c15b5;
+    background-color: #851ce9;
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(#ae18e2, 0.5);
+    background-color: #8c15b5;
+  }
+}
+
+.carts-btn-order {
+  background-color: #f2994a;
+  border: none;
+  @include text(14px, $text-medium, $text-c2-light);
+  border-radius: 5px;
+  padding: 6px 10px;
+}
