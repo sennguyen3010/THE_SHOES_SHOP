@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ACCESS_TOKEN, http, setStore, setStoreJSON, TOKEN_FB, USER_SIGNUP } from '../../util/config.jsx';
+import { history } from '../../index.js';
+import { ACCESS_TOKEN, getStoreJSON, http, setStore, setStoreJSON, TOKEN_FB, USER_SIGNUP } from '../../util/config.jsx';
+import { DISPLAY_LOADING, HIDE_LOADING } from './loadingReducer.jsx';
 
 const initialState = {
   userLogin: {},
@@ -22,9 +24,22 @@ export const signupApi = (userSignup) => {
     try {
       let result = await http.post('/Users/signup', userSignup);
 
-      console.log(result.data.content);
+      const showLoading = DISPLAY_LOADING();
+      dispatch(showLoading);
 
-      setStoreJSON(USER_SIGNUP, result.data.content);
+      //xu ly dang nhap
+      // let { email, password } = getStoreJSON(USER_SIGNUP);
+      let { email, password } = result.data.content;
+
+      // console.log({ email, password });
+
+      const action = signinApi({ email, password });
+      dispatch(action);
+
+      setTimeout(() => {
+        const hideLoading = HIDE_LOADING();
+        dispatch(hideLoading);
+      }, 3000);
     } catch (err) {
       console.log(err);
     }
@@ -36,8 +51,18 @@ export const signinApi = (userLogin) => {
     try {
       let result = await http.post('/Users/signin', userLogin);
 
+      const showLoading = DISPLAY_LOADING();
+      dispatch(showLoading);
+
       setStore(ACCESS_TOKEN, result.data.content.accessToken);
-      alert('finish');
+      // console.log('abc');
+
+      history.push('/');
+
+      setTimeout(() => {
+        const hideLoading = HIDE_LOADING();
+        dispatch(hideLoading);
+      }, 3000);
     } catch (err) {
       console.log(err);
     }

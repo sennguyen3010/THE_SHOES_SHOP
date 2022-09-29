@@ -4,8 +4,10 @@ import './assets/scss/styles.scss';
 
 //react-router-dom
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import HomeTemplate from './templates/HomeTemplate';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
+import HomeTemplate from './templates/HomeTemplate';
 import Home from './pages/Home/Home';
 import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
@@ -21,10 +23,12 @@ import HomeMobile from './pages/Home/HomeMobile';
 import ResponsiveItem from './hoc/ResponsiveItem';
 import HomeTemplateMobile from './templates/HomeTemplateMobile';
 
+export const history = createBrowserHistory();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
           {/* <Route path="" element={<ResponsiveItem component={HomeTemplate} componentMobile={HomeTemplateMobile} />}>
@@ -43,6 +47,6 @@ root.render(
           {/* </Route> */}
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   </Provider>
 );

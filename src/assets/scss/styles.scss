@@ -12,6 +12,7 @@ trong filder style sẽ import base, components, page, template ...
 @import './components/product';
 @import './components/footer';
 @import './components/cart';
+@import './components/loading';
 
 @import './pages/home';
 @import './pages/login';
@@ -19,3 +20,4 @@ trong filder style sẽ import base, components, page, template ...
 @import './pages/detail';
 @import './pages/profile';
 @import './pages/carts';
+@import './pages/search';

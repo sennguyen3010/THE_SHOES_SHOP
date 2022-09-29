@@ -1,0 +1,23 @@
+@import '../themes/variable';
+@import '../themes/mixin';
+
+.loading {
+  background-color: rgba(255, 255, 255, 0.95);
+  // background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
+  &_img {
+    width: 220px;
+    height: 220px;
+  }
+}

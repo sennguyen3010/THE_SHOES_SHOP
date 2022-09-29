@@ -1,0 +1,32 @@
+@import '../themes/mixin';
+@import '../themes/variable';
+
+.search {
+  margin-top: 200px;
+}
+.search-p {
+  @include text(18px, $text-medium, rgba(0, 0, 0, 0.6));
+  margin-bottom: 10px;
+}
+.search-input {
+  width: 500px;
+  padding: 12px 16px;
+  background-color: rgba(33, 33, 33, 0.08);
+  border: none;
+  border-radius: 5px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-title {
+  margin-top: 50px;
+}
+
+.search-btn {
+  padding: 12px 40px;
+  margin: 0 0 0 40px;
+}
+.search-select {
+}
