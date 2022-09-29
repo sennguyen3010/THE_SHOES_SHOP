@@ -1,2 +1,45 @@
 @import '../themes/variable';
 @import '../themes/mixin';
+
+.profile {
+  margin-top: 200px;
+}
+.profile-layout {
+  padding-bottom: 20px;
+}
+
+.profile-avatar {
+  padding: 50px 20px;
+}
+.profile-avatar-img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.profile-gender {
+  margin-top: 40px !important;
+}
+
+.profile-btn {
+  margin: 0;
+  padding: 12px 40px;
+}
+.profile-hr {
+  margin: 50px 0;
+  border-bottom: 1px solid #dedddc;
+}
+.profile-history {
+  margin-bottom: 50px;
+}
+.profile-history-title {
+  @include text(32px, $text-regular, #dd2aed);
+}
+.profile-history-title-black {
+  @include text(32px, $text-regular, $text-c1-dark);
+  margin-left: 40px;
+}
+
+.profile-placed-title {
+  @include text($text-xl, $text-regular, #7d0db1);
+  margin-bottom: 20px;
+}

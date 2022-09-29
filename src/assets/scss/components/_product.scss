@@ -1,16 +1,16 @@
 @import '../themes/mixin';
 @import '../themes/variable';
 
+.productFeature-title {
+  // text-align: center;
+  margin-bottom: 70px;
+  @include text($text-4xl, $text-regular, $text-c2-light);
+  background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
+  padding: 5px 0 5px 5px;
+}
+
 .productFeature {
   margin-top: 150px;
-
-  .productFeature-title {
-    // text-align: center;
-    margin-bottom: 70px;
-    @include text($text-4xl, $text-regular, $text-c2-light);
-    background: linear-gradient(180deg, #f21299 0%, #1b02b5 100%);
-    padding: 5px 0 5px 5px;
-  }
 
   .productFeature-item {
     display: flex;
