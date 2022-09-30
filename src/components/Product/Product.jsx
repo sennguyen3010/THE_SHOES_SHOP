@@ -9,7 +9,7 @@ export default function Product(props) {
 
   return (
     <div className="d-flex col-12 col-md-6 col-lg-4">
-      <div to="/" className="productFeature-item">
+      <div className="productFeature-item">
         <div className="productFeature-item-top">
           <div className="d-flex justify-content-end">
             <i className="far fa-heart productFeature-item-like"></i>
