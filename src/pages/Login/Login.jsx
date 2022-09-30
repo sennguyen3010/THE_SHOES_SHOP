@@ -90,7 +90,7 @@ export default function Login() {
                 autoLoad
                 callback={responseFacebook}
                 render={(renderProps) => (
-                  <button type="button" onClick={renderProps.onClick} className="login-fb">
+                  <button onClick={renderProps.onClick} className="login-fb">
                     <i className="fab fa-facebook login-fb-icon"></i>
                     Continue with Facebook
                   </button>

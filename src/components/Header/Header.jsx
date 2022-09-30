@@ -5,7 +5,7 @@ import { setAmount } from '../../redux/reducers/productReducer';
 import { images } from '../../assets/img';
 
 export default function Header() {
-  const { productCart } = useSelector((state) => state.productReducer);
+  const { arrOrder } = useSelector((state) => state.productReducer);
   // console.log(productCart);
   const dispatch = useDispatch();
   // const action = setAmount
@@ -24,7 +24,7 @@ export default function Header() {
               </NavLink>
               <NavLink className="header-right_cart" to="/carts">
                 <i className="fa-solid fa-cart-arrow-down" />
-                <span className="header-right_cart_count">({productCart.number})</span>
+                <span className="header-right_cart_count">({arrOrder?.length})</span>
               </NavLink>
               <NavLink className="header-right_text" id="login" to="/login">
                 Login
@@ -54,29 +54,29 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="./index.html">
+                  <NavLink className="nav-link active" aria-current="page" to="/">
                     Home
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/#">
+                  <NavLink className="nav-link" to="/">
                     Men
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/#">
+                  <NavLink className="nav-link" to="/">
                     Women
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/#">
+                  <NavLink className="nav-link" to="/">
                     Kid
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/#">
+                  <NavLink className="nav-link" to="/">
                     Sport
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>

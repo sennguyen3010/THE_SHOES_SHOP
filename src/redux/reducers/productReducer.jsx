@@ -1,13 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { http } from '../../util/config';
+import { getStoreJSON, http, PRODUCT_CART, setStoreJSON } from '../../util/config';
 
 const initialState = {
   arrProduct: [],
   productDetail: {},
-  productCart: {
-    number: 1,
-  },
+  orderDetail: [
+    {
+      productId: '',
+      quantity: 0,
+    },
+  ],
+
+  arrOrder: getStoreJSON(PRODUCT_CART) || [],
 };
 
 const productReducer = createSlice({
@@ -21,12 +26,48 @@ const productReducer = createSlice({
       state.productDetail = action.payload;
     },
     setAmount: (state, action) => {
-      state.productCart = action.payload;
+      const { masp, value } = action.payload;
+
+      // let newProductDetail = { productDetail, number: 1 };
+      // state.productDetail.number = 1;
+      // let newProductDetail = { ...state.productDetail, number: 1 };
+
+      // state.productDetail.number = 1;
+
+      // console.log(current(state.productDetail));
+
+      // state.arrProduct.map((item, index) => console.log(item));
+      if (value) {
+        state.productDetail.number += 1;
+        console.log('a');
+      } else {
+        if (state.productDetail.number >= 1) {
+          state.productDetail.number -= 1;
+          console.log('b');
+        }
+      }
+
+      console.log(current(state.productDetail));
+    },
+
+    setAddToCart: (state, action) => {
+      const productOrder = action.payload;
+
+      let index = state.arrOrder.findIndex((product) => product.id === productOrder.id);
+      if (index !== -1) {
+        state.arrOrder[index].number += 1;
+        console.log('yes');
+      } else {
+        state.arrOrder.push(productOrder);
+      }
+
+      console.log(current(state.arrOrder));
+      setStoreJSON(PRODUCT_CART, state.arrOrder);
     },
   },
 });
 
-export const { setArrProductAction, setProductDetail, setAmount } = productReducer.actions;
+export const { setArrProductAction, setProductDetail, setAmount, setAddToCart } = productReducer.actions;
 
 export default productReducer.reducer;
 

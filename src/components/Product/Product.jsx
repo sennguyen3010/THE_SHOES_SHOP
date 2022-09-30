@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { getProductDetailApi } from '../../redux/reducers/productReducer';
 
 export default function Product(props) {
@@ -23,9 +23,9 @@ export default function Product(props) {
         <div className="row">
           <div className="col-6 pe-0">
             <div className="productFeature-item-bottom bottom-bg-yellow">
-              <NavLink to={`/detail/${prod?.id}`} className="productFeature-btn item-bottom-text">
+              <Link to={`/detail/${prod?.id}`} className="productFeature-btn item-bottom-text">
                 Buy now
-              </NavLink>
+              </Link>
             </div>
           </div>
           <div className="col-6 ps-0">

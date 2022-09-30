@@ -9,6 +9,7 @@ export default function Carts() {
           <h2 className="carts-title">Carts</h2>
 
           <Cart />
+
           <div className="text-end">
             <button className="carts-btn-order">SUBMIT ORDER</button>
           </div>

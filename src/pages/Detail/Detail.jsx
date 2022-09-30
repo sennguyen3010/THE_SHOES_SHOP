@@ -3,10 +3,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Product from '../../components/Product/Product';
-import { getProductDetailApi } from '../../redux/reducers/productReducer';
+import { getProductDetailApi, setAddToCart, setAmount } from '../../redux/reducers/productReducer';
 
 export default function Detail() {
-  const { productDetail } = useSelector((state) => state.productReducer);
+  let { productDetail } = useSelector((state) => state.productReducer);
+  // let newProductDetail = { ...productDetail, number: 1 };
+  // console.log(newProductDetail);
+  //
   const dispatch = useDispatch();
 
   const params = useParams();
@@ -16,6 +19,16 @@ export default function Detail() {
 
     dispatch(action);
   }, [params.id]);
+
+  const amount = (masp, value) => {
+    const action = setAmount({ masp, value });
+    dispatch(action);
+  };
+
+  const addToCart = (productDetail) => {
+    const action = setAddToCart(productDetail);
+    dispatch(action);
+  };
 
   const renderProductDetail = () => {
     return (
@@ -38,11 +51,23 @@ export default function Detail() {
           </div>
           <p className="product-detail-price">{productDetail?.price}$</p>
           <div className="product-detail-count">
-            <p className="product-detail-count-btn product-detail-size">+</p>
-            <p className="product-detail-amount">1</p>
-            <p className="product-detail-count-btn product-detail-size">-</p>
+            <button
+              className="product-detail-count-btn product-detail-size"
+              onClick={() => amount(productDetail.id, true)}
+            >
+              +
+            </button>
+            <p className="product-detail-amount">{productDetail.number || 1}</p>
+            <button
+              className="product-detail-count-btn product-detail-size"
+              onClick={() => amount(productDetail.id, false)}
+            >
+              -
+            </button>
           </div>
-          <button className="product-detail-add">Add to cart</button>
+          <button className="product-detail-add" onClick={() => addToCart(productDetail)}>
+            Add to cart
+          </button>
         </div>
       </>
     );

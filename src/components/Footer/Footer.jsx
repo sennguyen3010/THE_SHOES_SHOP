@@ -63,9 +63,9 @@ export default function Footer() {
           </div>
         </div>
       </footer>
-      <NavLink href="#" className="backToTop cd-top text-replace js-cd-top">
+      {/* <NavLink href="#" className="backToTop cd-top text-replace js-cd-top">
         <i className="fas fa-chevron-up" />
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 }

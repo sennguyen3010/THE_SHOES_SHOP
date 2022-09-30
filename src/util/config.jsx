@@ -50,12 +50,14 @@ export const configs = {
   USER_LOGIN: 'userLogin',
   USER_SIGNUP: 'userSignup',
   // TOKEN_FB: 'tokenFb',
+  PRODUCT_CART: 'productCart',
 };
 
 export const {
   ACCESS_TOKEN,
   USER_LOGIN,
   USER_SIGNUP,
+  PRODUCT_CART,
   getCookie,
   setCookie,
   getStore,
