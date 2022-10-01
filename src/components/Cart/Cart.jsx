@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAmountCart } from '../../redux/reducers/productReducer';
+import { deleteProductCart, setAmountCart } from '../../redux/reducers/productReducer';
 // import { getStoreJSON, PRODUCT_CART } from '../../util/config';
 
 export default function Cart(props) {
@@ -10,6 +10,11 @@ export default function Cart(props) {
 
   const amount = (masp, value) => {
     const action = setAmountCart({ masp, value });
+    dispatch(action);
+  };
+
+  const deleteProduct = (masp) => {
+    const action = deleteProductCart(masp);
     dispatch(action);
   };
 
@@ -38,7 +43,12 @@ export default function Cart(props) {
           <td>{item.number * item.price}</td>
           <td>
             <button className="carts-btn-action carts-btn-count btnSubmit me-2">EDIT</button>
-            <button className="carts-btn-del carts-btn-action carts-btn-count btnSubmit">DELETE</button>
+            <button
+              className="carts-btn-del carts-btn-action carts-btn-count btnSubmit"
+              onClick={() => deleteProduct(item.id)}
+            >
+              DELETE
+            </button>
           </td>
         </tr>
       );

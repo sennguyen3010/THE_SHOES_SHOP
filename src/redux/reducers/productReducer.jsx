@@ -62,13 +62,22 @@ const productReducer = createSlice({
         state.arrOrder.push(productOrder);
       }
 
-      console.log(current(state.arrOrder));
+      setStoreJSON(PRODUCT_CART, state.arrOrder);
+    },
+
+    deleteProductCart: (state, action) => {
+      const masp = action.payload;
+
+      let newArr = state.arrOrder.filter((item) => item.id != masp);
+      state.arrOrder = newArr;
+
       setStoreJSON(PRODUCT_CART, state.arrOrder);
     },
   },
 });
 
-export const { setArrProductAction, setProductDetail, setAmount, setAmountCart, setAddToCart } = productReducer.actions;
+export const { setArrProductAction, setProductDetail, setAmount, setAmountCart, setAddToCart, deleteProductCart } =
+  productReducer.actions;
 
 export default productReducer.reducer;
 
