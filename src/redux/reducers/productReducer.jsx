@@ -22,32 +22,34 @@ const productReducer = createSlice({
     setArrProductAction: (state, action) => {
       state.arrProduct = action.payload;
     },
+
     setProductDetail: (state, action) => {
       state.productDetail = action.payload;
     },
+
     setAmount: (state, action) => {
-      const { masp, value } = action.payload;
+      const value = action.payload;
 
-      // let newProductDetail = { productDetail, number: 1 };
-      // state.productDetail.number = 1;
-      // let newProductDetail = { ...state.productDetail, number: 1 };
-
-      // state.productDetail.number = 1;
-
-      // console.log(current(state.productDetail));
-
-      // state.arrProduct.map((item, index) => console.log(item));
       if (value) {
         state.productDetail.number += 1;
-        console.log('a');
       } else {
         if (state.productDetail.number >= 1) {
           state.productDetail.number -= 1;
-          console.log('b');
         }
       }
+    },
 
-      console.log(current(state.productDetail));
+    setAmountCart: (state, action) => {
+      const { masp, value } = action.payload;
+
+      let index = state.arrOrder.findIndex((item) => item.id == masp);
+      if (value) {
+        state.arrOrder[index].number += 1;
+      } else {
+        if (state.arrOrder[index].number >= 1) {
+          state.arrOrder[index].number -= 1;
+        }
+      }
     },
 
     setAddToCart: (state, action) => {
@@ -55,8 +57,7 @@ const productReducer = createSlice({
 
       let index = state.arrOrder.findIndex((product) => product.id === productOrder.id);
       if (index !== -1) {
-        state.arrOrder[index].number += 1;
-        console.log('yes');
+        state.arrOrder[index].number += state.productDetail.number;
       } else {
         state.arrOrder.push(productOrder);
       }
@@ -67,7 +68,7 @@ const productReducer = createSlice({
   },
 });
 
-export const { setArrProductAction, setProductDetail, setAmount, setAddToCart } = productReducer.actions;
+export const { setArrProductAction, setProductDetail, setAmount, setAmountCart, setAddToCart } = productReducer.actions;
 
 export default productReducer.reducer;
 
@@ -91,7 +92,7 @@ export const getProductDetailApi = (id) => {
   return async (dispatch) => {
     try {
       const result = await http.get(`/Product/getbyid?id=${id}`);
-      const action = setProductDetail(result.data.content);
+      const action = setProductDetail({ ...result.data.content, number: 1 });
       dispatch(action);
     } catch (err) {
       console.log(err);

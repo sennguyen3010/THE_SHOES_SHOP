@@ -1,16 +1,17 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAmountCart } from '../../redux/reducers/productReducer';
 // import { getStoreJSON, PRODUCT_CART } from '../../util/config';
 
 export default function Cart(props) {
-  // const { item } = props;
-  // console.log(item);
-
   let { arrOrder } = useSelector((state) => state.productReducer);
-  // let result = getStoreJSON(PRODUCT_CART);
-  // arrOrder = result;
-  // (result ? result : arrOrder).map((item) => console.log(item));
+  const dispatch = useDispatch();
+
+  const amount = (masp, value) => {
+    const action = setAmountCart({ masp, value });
+    dispatch(action);
+  };
 
   const renderCart = () => {
     return arrOrder?.map((item, index) => {
@@ -26,9 +27,13 @@ export default function Cart(props) {
           <td>{item.name}</td>
           <td>{item.price}</td>
           <td>
-            <button className="carts-btn-count btnSubmit">+</button>
+            <button className="carts-btn-count btnSubmit" onClick={() => amount(item.id, true)}>
+              +
+            </button>
             <span className="carts-amount">{item.number}</span>
-            <button className="carts-btn-count btnSubmit">-</button>
+            <button className="carts-btn-count btnSubmit" onClick={() => amount(item.id, false)}>
+              -
+            </button>
           </td>
           <td>{item.number * item.price}</td>
           <td>

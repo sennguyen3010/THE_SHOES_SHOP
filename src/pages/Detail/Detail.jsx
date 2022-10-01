@@ -20,8 +20,8 @@ export default function Detail() {
     dispatch(action);
   }, [params.id]);
 
-  const amount = (masp, value) => {
-    const action = setAmount({ masp, value });
+  const amount = (value) => {
+    const action = setAmount(value);
     dispatch(action);
   };
 
@@ -51,17 +51,11 @@ export default function Detail() {
           </div>
           <p className="product-detail-price">{productDetail?.price}$</p>
           <div className="product-detail-count">
-            <button
-              className="product-detail-count-btn product-detail-size"
-              onClick={() => amount(productDetail.id, true)}
-            >
+            <button className="product-detail-count-btn product-detail-size" onClick={() => amount(true)}>
               +
             </button>
             <p className="product-detail-amount">{productDetail.number || 1}</p>
-            <button
-              className="product-detail-count-btn product-detail-size"
-              onClick={() => amount(productDetail.id, false)}
-            >
+            <button className="product-detail-count-btn product-detail-size" onClick={() => amount(false)}>
               -
             </button>
           </div>
