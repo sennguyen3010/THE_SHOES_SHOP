@@ -2,11 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { history } from '../..';
 import Product from '../../components/Product/Product';
 import { getProductDetailApi, setAddToCart, setAmount } from '../../redux/reducers/productReducer';
 
 export default function Detail() {
   let { productDetail } = useSelector((state) => state.productReducer);
+  let { userLogin } = useSelector((state) => state.userReducer);
   // let newProductDetail = { ...productDetail, number: 1 };
   // console.log(newProductDetail);
   //
@@ -26,8 +28,13 @@ export default function Detail() {
   };
 
   const addToCart = (productDetail) => {
-    const action = setAddToCart(productDetail);
-    dispatch(action);
+    if (userLogin) {
+      const action = setAddToCart(productDetail);
+      dispatch(action);
+    } else {
+      alert('vui lòng đăng nhập!');
+      history.push('/login');
+    }
   };
 
   const renderProductDetail = () => {

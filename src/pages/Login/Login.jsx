@@ -24,15 +24,17 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
   const onSubmit = (data) => {
     const action = signinApi(data);
     dispatch(action);
   };
 
   const responseFacebook = (response) => {
-    console.log(response);
-
-    const action = signinApiFacebook(response.accessToken);
+    const token = {
+      facebookToken: response.accessToken,
+    };
+    const action = signinApiFacebook(token);
     dispatch(action);
   };
 
@@ -87,7 +89,7 @@ export default function Login() {
             <div className="col-12 col-lg-12 text-end register-btnSubmit">
               <FacebookLogin
                 appId="620622206275461"
-                autoLoad
+                autoLoad={false}
                 callback={responseFacebook}
                 render={(renderProps) => (
                   <button onClick={renderProps.onClick} className="login-fb">

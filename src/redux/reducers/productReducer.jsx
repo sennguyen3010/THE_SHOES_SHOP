@@ -88,6 +88,12 @@ export const getProductApi = () => {
     try {
       //call api
       const result = await http.get('/Product');
+      // const result = await axios({
+      //   url: 'https://shop.cyberlearn.vn/api/Product',
+      //   method: 'GET',
+      // });
+
+      // console.log(result.data);
 
       const action = setArrProductAction(result.data.content);
       dispatch(action);

@@ -9,7 +9,6 @@ export default function Home() {
   const { arrProduct } = useSelector((state) => state.productReducer);
   const renderProduct = () => {
     return arrProduct?.map((prod, index) => {
-      // console.log(prod);
       return <Product prod={prod} key={index} />;
     });
   };

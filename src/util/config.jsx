@@ -49,7 +49,6 @@ export const configs = {
   ACCESS_TOKEN: 'accessToken',
   USER_LOGIN: 'userLogin',
   USER_SIGNUP: 'userSignup',
-  // TOKEN_FB: 'tokenFb',
   PRODUCT_CART: 'productCart',
 };
 

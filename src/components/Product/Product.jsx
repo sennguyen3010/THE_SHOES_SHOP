@@ -5,7 +5,6 @@ import { getProductDetailApi } from '../../redux/reducers/productReducer';
 
 export default function Product(props) {
   const { prod } = props;
-  // console.log(props.prod);
 
   return (
     <div className="d-flex col-12 col-md-6 col-lg-4">

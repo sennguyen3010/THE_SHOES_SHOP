@@ -1,14 +1,51 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { setAmount } from '../../redux/reducers/productReducer';
+import { history } from '../..';
 import { images } from '../../assets/img';
+import { ACCESS_TOKEN, clearLocalStorage, PRODUCT_CART, USER_LOGIN } from '../../util/config';
 
 export default function Header() {
   const { arrOrder } = useSelector((state) => state.productReducer);
-  // console.log(productCart);
+  const { userLogin } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
-  // const action = setAmount
+
+  const renderNavLink = () => {
+    if (userLogin) {
+      return (
+        <>
+          <NavLink className="header-right_text" id="login" to="/profile">
+            Profile
+          </NavLink>
+          <NavLink
+            className="header-right_text"
+            id="login"
+            to="/"
+            onClick={() => {
+              clearLocalStorage(USER_LOGIN);
+              clearLocalStorage(ACCESS_TOKEN);
+              clearLocalStorage(PRODUCT_CART);
+              window.location.href = '/';
+            }}
+          >
+            Logout
+          </NavLink>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <NavLink className="header-right_text" id="login" to="/login">
+            Login
+          </NavLink>
+          <NavLink className="header-right_text" to="/register">
+            Register
+          </NavLink>
+        </>
+      );
+    }
+  };
+
   return (
     <header className="header fixed-top">
       <div className="header-nav">
@@ -22,16 +59,12 @@ export default function Header() {
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <span className="header-right_search_text header-right_cart_count">Search</span>
               </NavLink>
-              <NavLink className="header-right_cart" to="/carts">
+              <NavLink className="header-right_cart" to={userLogin ? '/carts' : '/login'}>
                 <i className="fa-solid fa-cart-arrow-down" />
                 <span className="header-right_cart_count">({arrOrder?.length})</span>
               </NavLink>
-              <NavLink className="header-right_text" id="login" to="/login">
-                Login
-              </NavLink>
-              <NavLink className="header-right_text" to="/register">
-                Register
-              </NavLink>
+
+              {renderNavLink()}
             </div>
           </div>
         </nav>
