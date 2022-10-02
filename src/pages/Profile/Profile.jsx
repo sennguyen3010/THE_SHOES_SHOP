@@ -14,10 +14,10 @@ export default function Profile() {
   const { userLogin } = useSelector((state) => state.userReducer);
   let [userUpdate, setUserUpdate] = useState({
     email: userLogin?.email,
-    password: userLogin?.password,
-    phone: userLogin?.phone,
-    name: userLogin?.name,
-    gender: userLogin?.gender,
+    // password: userLogin?.password,
+    // phone: userLogin?.phone,
+    // name: userLogin?.name,
+    // gender: userLogin?.gender,
   });
   // console.log(userLogin);
   // console.log(userUpdate);
@@ -70,7 +70,7 @@ export default function Profile() {
                 <label className="register-item_label">Email</label>
                 <input
                   value={userLogin.email}
-                  onChange={handleChangeInput}
+                  onChange={(e) => setUserUpdate(e.target.value)}
                   {...register('email')}
                   name="email"
                   className="register-item_input"

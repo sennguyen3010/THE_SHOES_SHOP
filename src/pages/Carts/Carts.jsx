@@ -1,7 +1,32 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../../components/Cart/Cart';
+import { postUserOrder } from '../../redux/reducers/productReducer';
 
 export default function Carts() {
+  let { arrOrder } = useSelector((state) => state.productReducer);
+  let { userLogin } = useSelector((state) => state.userReducer);
+  const dispatch = useDispatch();
+
+  const submitOrder = () => {
+    let result = arrOrder;
+    let orderDetail = [];
+    let infoOrder = {};
+
+    result.map((item) => {
+      let order = {
+        productId: item.id,
+        quantity: item.number,
+      };
+      orderDetail.push(order);
+    });
+
+    let valueOrder = { ...infoOrder, orderDetail, email: userLogin.email };
+
+    const action = postUserOrder(valueOrder);
+    dispatch(action);
+  };
+
   return (
     <section className="carts">
       <div className="container">
@@ -11,7 +36,9 @@ export default function Carts() {
           <Cart />
 
           <div className="text-end">
-            <button className="carts-btn-order">SUBMIT ORDER</button>
+            <button className="carts-btn-order" onClick={submitOrder}>
+              SUBMIT ORDER
+            </button>
           </div>
         </div>
       </div>

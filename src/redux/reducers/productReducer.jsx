@@ -5,13 +5,6 @@ import { getStoreJSON, http, PRODUCT_CART, setStoreJSON } from '../../util/confi
 const initialState = {
   arrProduct: [],
   productDetail: {},
-  orderDetail: [
-    {
-      productId: '',
-      quantity: 0,
-    },
-  ],
-
   arrOrder: getStoreJSON(PRODUCT_CART) || [],
 };
 
@@ -73,6 +66,11 @@ const productReducer = createSlice({
 
       setStoreJSON(PRODUCT_CART, state.arrOrder);
     },
+
+    // setSubmitOrder: (state, action) => {
+    //   const newInfoOrder = action.payload;
+    //   state.infoOrder = newInfoOrder;
+    // },
   },
 });
 
@@ -109,6 +107,20 @@ export const getProductDetailApi = (id) => {
       const result = await http.get(`/Product/getbyid?id=${id}`);
       const action = setProductDetail({ ...result.data.content, number: 1 });
       dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const postUserOrder = (order) => {
+  return async () => {
+    try {
+      const result = await axios({
+        url: 'https://shop.cyberlearn.vn/api/Users/order',
+        method: 'POST',
+        data: order,
+      });
     } catch (err) {
       console.log(err);
     }
