@@ -7,20 +7,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { getProfileApi, signupApi } from '../../redux/reducers/userReducer';
 import Cart from '../../components/Cart/Cart';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const { userLogin } = useSelector((state) => state.userReducer);
-  let [userUpdate, setUserUpdate] = useState({
-    email: userLogin?.email,
-    // password: userLogin?.password,
-    // phone: userLogin?.phone,
-    // name: userLogin?.name,
-    // gender: userLogin?.gender,
-  });
-  // console.log(userLogin);
-  // console.log(userUpdate);
+
+  console.log(userLogin);
 
   const schema = Yup.object({
     email: Yup.string().required('Email không được bỏ trống!').email('Email không đúng định dạng!'),
@@ -37,7 +31,13 @@ export default function Profile() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      name: userLogin?.name,
+      email: userLogin?.email,
+    },
+  });
 
   const onSubmit = (data) => {
     const action = signupApi(data);
@@ -49,10 +49,46 @@ export default function Profile() {
     dispatch(action);
   }, []);
 
-  const handleChangeInput = (e) => {
-    const { id, value } = e.target;
-    console.log(value);
-    value = userLogin.email;
+  const renderOrderHistory = () => {
+    return userLogin?.ordersHistory?.map((order, index) => {
+      return (
+        <div key={index}>
+          <p className="profile-placed-title">
+            + Orders have been placed on {moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}
+          </p>
+          <table className="table text-center align-middle">
+            <thead className="carts-thead">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Img</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {order.orderDetail.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{item.id}</td>
+                    <td>
+                      <img className="carts-img" src={item.image} alt="..." />
+                    </td>
+                    <td>{item.name}</td>
+                    <td>{item.price}</td>
+                    <td>
+                      <span className="carts-amount">{item.quantity}</span>
+                    </td>
+                    <td>{item.quantity * item.price}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    });
   };
 
   return (
@@ -69,8 +105,6 @@ export default function Profile() {
               <div className="register-item">
                 <label className="register-item_label">Email</label>
                 <input
-                  value={userLogin.email}
-                  onChange={(e) => setUserUpdate(e.target.value)}
                   {...register('email')}
                   name="email"
                   className="register-item_input"
@@ -146,8 +180,7 @@ export default function Profile() {
             <h3 className="profile-history-title">Order history</h3>
             <h3 className="profile-history-title-black">Favourite</h3>
           </div>
-          <p className="profile-placed-title">+ Orders have been placed on 09-19-2022</p>
-          <Cart />
+          {renderOrderHistory()}
         </div>
       </div>
     </section>
