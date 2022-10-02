@@ -1,16 +1,26 @@
 import React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signupApi } from '../../redux/reducers/userReducer';
-import Notification from '../../components/Notification/Notification';
+import { getProfileApi, signupApi } from '../../redux/reducers/userReducer';
 import Cart from '../../components/Cart/Cart';
+import { useEffect } from 'react';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const { userLogin } = useSelector((state) => state.userReducer);
+  let [userUpdate, setUserUpdate] = useState({
+    email: userLogin?.email,
+    password: userLogin?.password,
+    phone: userLogin?.phone,
+    name: userLogin?.name,
+    gender: userLogin?.gender,
+  });
+  // console.log(userLogin);
+  // console.log(userUpdate);
 
   const schema = Yup.object({
     email: Yup.string().required('Email không được bỏ trống!').email('Email không đúng định dạng!'),
@@ -28,9 +38,21 @@ export default function Profile() {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
   const onSubmit = (data) => {
     const action = signupApi(data);
     dispatch(action);
+  };
+
+  useEffect(() => {
+    const action = getProfileApi();
+    dispatch(action);
+  }, []);
+
+  const handleChangeInput = (e) => {
+    const { id, value } = e.target;
+    console.log(value);
+    value = userLogin.email;
   };
 
   return (
@@ -41,12 +63,14 @@ export default function Profile() {
 
           <form className="row register-form" id="registerForm" onSubmit={handleSubmit(onSubmit)}>
             <div className="profile-avatar col-2">
-              <img className="profile-avatar-img" src="https://i.pravatar.cc/300" alt="avatar" />
+              <img className="profile-avatar-img" src={userLogin.avatar} alt="avatar" />
             </div>
             <div className="col-12 col-lg-5 pd-right">
               <div className="register-item">
                 <label className="register-item_label">Email</label>
                 <input
+                  value={userLogin.email}
+                  onChange={handleChangeInput}
                   {...register('email')}
                   name="email"
                   className="register-item_input"

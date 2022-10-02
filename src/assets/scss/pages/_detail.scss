@@ -46,6 +46,7 @@
         background: linear-gradient(180deg, #6181f3 0%, #7c97f5 99.48%);
         @include text($text-3xl, $text-regular, $text-c3-light);
         margin: 0;
+        border: none;
       }
       .product-detail-amount {
         @include text($text-3xl, $text-regular, $text-c1-dark);

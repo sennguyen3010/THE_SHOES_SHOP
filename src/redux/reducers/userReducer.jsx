@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { history } from '../../index.js';
-import { getStoreJSON, http, setStoreJSON, USER_LOGIN } from '../../util/config.jsx';
+import { ACCESS_TOKEN, getStoreJSON, http, setStore, setStoreJSON, USER_LOGIN } from '../../util/config.jsx';
 import { DISPLAY_LOADING, HIDE_LOADING } from './loadingReducer.jsx';
 
 const initialState = {
@@ -57,6 +57,7 @@ export const signinApi = (userLogin) => {
       dispatch(showLoading);
 
       setStoreJSON(USER_LOGIN, result.data.content);
+      setStore(ACCESS_TOKEN, result.data.content.accessToken);
 
       const action = setUserLogin(result.data.content);
       dispatch(action);
@@ -86,6 +87,8 @@ export const signinApiFacebook = (token) => {
       dispatch(showLoading);
 
       setStoreJSON(USER_LOGIN, result.data.content);
+      setStore(ACCESS_TOKEN, result.data.content.accessToken);
+
       const action = setUserLogin(result.data.content);
       dispatch(action);
       history.push('/');
@@ -94,6 +97,21 @@ export const signinApiFacebook = (token) => {
         const hideLoading = HIDE_LOADING();
         dispatch(hideLoading);
       }, 3000);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getProfileApi = () => {
+  return async (dispatch) => {
+    try {
+      let result = await http.post('/Users/getProfile');
+
+      console.log(result);
+
+      const action = setUserLogin(result.data.content);
+      dispatch(action);
     } catch (err) {
       console.log(err);
     }

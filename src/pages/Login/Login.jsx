@@ -41,52 +41,54 @@ export default function Login() {
   return (
     <section className="register">
       <div className="container">
-        <form className="row register-form" id="loginForm" onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="register-title">Login</h2>
-
+        <div className="row register-layout">
           <div className="col-12 col-lg-6 pd-right">
-            <div className="register-item">
-              <label className="register-item_label">Email</label>
-              <input
-                {...register('email')}
-                name="email"
-                className="register-item_input"
-                id="email"
-                placeholder="Email"
-              />
-              <span className="mess_err">{errors.email?.message}</span>
-            </div>
+            <form className="register-form" id="loginForm" onSubmit={handleSubmit(onSubmit)}>
+              <h2 className="register-title">Login</h2>
 
-            <div className="register-item">
-              <label className="register-item_label">Password</label>
-              <input
-                {...register('password')}
-                name="password"
-                type={showPassword ? 'password' : 'text'}
-                className="register-item_input"
-                id="password"
-                placeholder="Password"
-              />
-              <span className="mess_err">{errors.password?.message}</span>
-
-              <div onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? (
-                  <i id="password-icon" className="far fa-eye"></i>
-                ) : (
-                  <i id="password-icon" className="fas fa-eye-slash"></i>
-                )}
+              <div className="register-item">
+                <label className="register-item_label">Email</label>
+                <input
+                  {...register('email')}
+                  name="email"
+                  className="register-item_input"
+                  id="email"
+                  placeholder="Email"
+                />
+                <span className="mess_err">{errors.email?.message}</span>
               </div>
-            </div>
-            <div className="col-12 col-lg-12 text-end register-btnSubmit">
-              <NavLink className="register-link" to="/register">
-                Register now ?
-              </NavLink>
-              <button type="submit" className="btnSubmit" id="btnLogin">
-                LOGIN
-              </button>
-            </div>
 
-            <div className="col-12 col-lg-12 text-end register-btnSubmit">
+              <div className="register-item">
+                <label className="register-item_label">Password</label>
+                <input
+                  {...register('password')}
+                  name="password"
+                  type={showPassword ? 'password' : 'text'}
+                  className="register-item_input"
+                  id="password"
+                  placeholder="Password"
+                />
+                <span className="mess_err">{errors.password?.message}</span>
+
+                <div onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? (
+                    <i id="password-icon" className="far fa-eye"></i>
+                  ) : (
+                    <i id="password-icon" className="fas fa-eye-slash"></i>
+                  )}
+                </div>
+              </div>
+              <div className="col-12 col-lg-12 text-end register-btnSubmit">
+                <NavLink className="register-link" to="/register">
+                  Register now ?
+                </NavLink>
+                <button type="submit" className="btnSubmit" id="btnLogin">
+                  LOGIN
+                </button>
+              </div>
+            </form>
+
+            <div className="text-end register-btnSubmit">
               <FacebookLogin
                 appId="620622206275461"
                 autoLoad={false}
@@ -100,7 +102,7 @@ export default function Login() {
               />
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </section>
   );
