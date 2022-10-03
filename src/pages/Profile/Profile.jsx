@@ -1,20 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getProfileApi, signupApi } from '../../redux/reducers/userReducer';
-import Cart from '../../components/Cart/Cart';
+import { getProfileApi, updateProfile } from '../../redux/reducers/userReducer';
 import { useEffect } from 'react';
 import moment from 'moment';
+import Pagination from 'react-bootstrap/Pagination';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
   const { userLogin } = useSelector((state) => state.userReducer);
-
-  console.log(userLogin);
 
   const schema = Yup.object({
     email: Yup.string().required('Email không được bỏ trống!').email('Email không đúng định dạng!'),
@@ -29,25 +25,27 @@ export default function Profile() {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: {
-      name: userLogin?.name,
-      email: userLogin?.email,
-    },
+    defaultValues: '',
   });
 
   const onSubmit = (data) => {
-    const action = signupApi(data);
+    const action = updateProfile(data);
     dispatch(action);
   };
 
   useEffect(() => {
     const action = getProfileApi();
     dispatch(action);
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    reset(userLogin);
+  }, [reset, userLogin]);
 
   const renderOrderHistory = () => {
     return userLogin?.ordersHistory?.map((order, index) => {
@@ -110,6 +108,7 @@ export default function Profile() {
                   className="register-item_input"
                   id="email"
                   placeholder="Email"
+                  disabled
                 />
                 <span className="mess_err">{errors.email?.message}</span>
               </div>
@@ -119,20 +118,12 @@ export default function Profile() {
                 <input
                   {...register('password')}
                   name="password"
-                  type={showPassword ? 'password' : 'text'}
                   className="register-item_input"
                   id="password"
                   placeholder="Password"
+                  disabled
                 />
                 <span className="mess_err">{errors.password?.message}</span>
-
-                <div onClick={() => setShowPassword(!showPassword)}>
-                  {showPassword ? (
-                    <i id="password-icon" className="far fa-eye"></i>
-                  ) : (
-                    <i id="password-icon" className="fas fa-eye-slash"></i>
-                  )}
-                </div>
               </div>
             </div>
 
@@ -181,6 +172,24 @@ export default function Profile() {
             <h3 className="profile-history-title-black">Favourite</h3>
           </div>
           {renderOrderHistory()}
+
+          <Pagination>
+            <Pagination.First />
+            <Pagination.Prev />
+            <Pagination.Item>{1}</Pagination.Item>
+            <Pagination.Ellipsis />
+
+            <Pagination.Item>{10}</Pagination.Item>
+            <Pagination.Item>{11}</Pagination.Item>
+            <Pagination.Item active>{12}</Pagination.Item>
+            <Pagination.Item>{13}</Pagination.Item>
+            <Pagination.Item disabled>{14}</Pagination.Item>
+
+            <Pagination.Ellipsis />
+            <Pagination.Item>{20}</Pagination.Item>
+            <Pagination.Next />
+            <Pagination.Last />
+          </Pagination>
         </div>
       </div>
     </section>

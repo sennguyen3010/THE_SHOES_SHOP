@@ -108,10 +108,18 @@ export const getProfileApi = () => {
     try {
       let result = await http.post('/Users/getProfile');
 
-      console.log(result);
-
       const action = setUserLogin(result.data.content);
       dispatch(action);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const updateProfile = (userUpdate) => {
+  return async (dispatch) => {
+    try {
+      let result = await http.post('/Users/updateProfile', userUpdate);
     } catch (err) {
       console.log(err);
     }
