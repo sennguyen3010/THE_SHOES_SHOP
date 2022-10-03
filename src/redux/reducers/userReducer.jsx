@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import Notification from '../../components/Notification/Notification.jsx';
 import { history } from '../../index.js';
 import { ACCESS_TOKEN, getStoreJSON, http, setStore, setStoreJSON, USER_LOGIN } from '../../util/config.jsx';
 import { DISPLAY_LOADING, HIDE_LOADING } from './loadingReducer.jsx';
@@ -49,6 +48,7 @@ export const signupApi = (userSignup) => {
       }, 2000);
     } catch (err) {
       console.log(err);
+      dispatch(setMessError(err.response.data.message));
     }
   };
 };

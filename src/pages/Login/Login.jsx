@@ -11,8 +11,6 @@ import Notification from '../../components/Notification/Notification';
 export default function Login() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const { messError } = useSelector((state) => state.userReducer);
-  console.log(messError);
 
   const schema = Yup.object({
     email: Yup.string().required('Email không được bỏ trống!').email('Email không đúng định dạng!'),
@@ -44,8 +42,8 @@ export default function Login() {
   return (
     <section className="register">
       <div className="container">
-        <div className="row register-layout">
-          <Notification messError={messError} />
+        <Notification />
+        <div className="row register-layout position-relative">
           <div className="col-12 col-lg-6 pd-right">
             <form className="register-form" id="loginForm" onSubmit={handleSubmit(onSubmit)}>
               <h2 className="register-title">Login</h2>

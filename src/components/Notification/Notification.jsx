@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMessError } from '../../redux/reducers/userReducer';
 
-export default function Notification(props) {
-  const { messError } = props;
+export default function Notification() {
+  const { messError } = useSelector((state) => state.userReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let notice = setTimeout(() => {
-      const action = setMessError('');
-      dispatch(action);
-      console.log('effect');
-    }, 3000);
-    return () => {
-      clearTimeout(notice);
-    };
-  }, []);
+    if (messError) {
+      let timeout = setTimeout(() => {
+        dispatch(setMessError(''));
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [messError, dispatch]);
+
   return (
     <div>
       {messError ? (
-        <div className="alert alert-warning alert-dismissible fade show" role="alert">
-          <p>{messError}</p>
-          {/* <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" /> */}
+        <div className="notification">
+          <div className="alert alert-warning alert-dismissible fade show" role="alert">
+            <p>{messError}</p>
+          </div>
         </div>
       ) : (
         ''

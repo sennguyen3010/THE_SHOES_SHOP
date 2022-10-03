@@ -20,7 +20,7 @@ export default function Register() {
       .max(32, 'Password từ 3-32 ký tự!'),
     passwordConfirm: Yup.string()
       .required('Password confirm không được bỏ trống!')
-      .oneOf([Yup.ref('password')], 'Passwords does not match'),
+      .oneOf([Yup.ref('password')], 'Passwords không khớp!'),
     name: Yup.string().required('Name không được bỏ trống!'),
     phone: Yup.string().required('Phone không được bỏ trống!'),
   });
@@ -31,6 +31,8 @@ export default function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = (data) => {
+    window.scrollTo(0, 0);
+
     const action = signupApi(data);
     dispatch(action);
   };
