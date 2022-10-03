@@ -60,7 +60,7 @@ export default function Profile() {
               </tr>
             </thead>
             <tbody>
-              {order.orderDetail.map((item, index) => {
+              {order.orderDetail?.map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>
@@ -90,7 +90,7 @@ export default function Profile() {
 
           <form className="row register-form" id="registerForm" onSubmit={handleSubmit(onSubmit)}>
             <div className="profile-avatar col-2">
-              <img className="profile-avatar-img" src={userLogin.avatar} alt="avatar" />
+              <img className="profile-avatar-img" src={userLogin?.avatar} alt="avatar" />
             </div>
             <div className="col-12 col-lg-5 pd-right">
               <div className="register-item">

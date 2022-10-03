@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../../components/Cart/Cart';
+import Notification from '../../components/Notification/Notification';
 import { postUserOrder } from '../../redux/reducers/productReducer';
 
 export default function Carts() {
@@ -23,13 +24,15 @@ export default function Carts() {
 
     let valueOrder = { ...infoOrder, orderDetail, email: userLogin.email };
 
-    const action = postUserOrder(valueOrder);
-    dispatch(action);
+    if (orderDetail.length != 0) {
+      const action = postUserOrder(valueOrder);
+      dispatch(action);
+    }
   };
-
   return (
     <section className="carts">
       <div className="container">
+        <Notification />
         <div className="carts-layout">
           <h2 className="carts-title">Carts</h2>
 

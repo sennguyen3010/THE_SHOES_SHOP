@@ -1,14 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { history } from '../..';
 import { images } from '../../assets/img';
 import { ACCESS_TOKEN, clearLocalStorage, PRODUCT_CART, USER_LOGIN } from '../../util/config';
+import Notification from '../Notification/Notification';
 
 export default function Header() {
   const { arrOrder } = useSelector((state) => state.productReducer);
   const { userLogin } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const renderNavLink = () => {
     if (userLogin) {
@@ -59,10 +61,17 @@ export default function Header() {
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <span className="header-right_search_text header-right_cart_count">Search</span>
               </NavLink>
-              <NavLink className="header-right_cart" to={userLogin ? '/carts' : '/login'}>
-                <i className="fa-solid fa-cart-arrow-down" />
-                <span className="header-right_cart_count">({arrOrder?.length})</span>
-              </NavLink>
+              {userLogin ? (
+                <NavLink className="header-right_cart" to="/carts">
+                  <i className="fa-solid fa-cart-arrow-down" />
+                  <span className="header-right_cart_count">({arrOrder?.length})</span>
+                </NavLink>
+              ) : (
+                <NavLink className="header-right_cart" to="/login" onClick={() => alert('Vui lòng đăng nhập!')}>
+                  <i className="fa-solid fa-cart-arrow-down" />
+                  <span className="header-right_cart_count">({arrOrder?.length})</span>
+                </NavLink>
+              )}
 
               {renderNavLink()}
             </div>

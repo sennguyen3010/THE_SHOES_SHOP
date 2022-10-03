@@ -1,6 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { clearLocalStorage, getStoreJSON, http, PRODUCT_CART, setStoreJSON } from '../../util/config';
+import { setMessError } from './userReducer';
 
 const initialState = {
   arrProduct: [],
@@ -130,6 +131,7 @@ export const postUserOrder = (order) => {
       clearLocalStorage(PRODUCT_CART);
       const action = setSubmitOrder();
       dispatch(action);
+      dispatch(setMessError('Đặt hàng thành công!'));
     } catch (err) {
       console.log(err);
     }
