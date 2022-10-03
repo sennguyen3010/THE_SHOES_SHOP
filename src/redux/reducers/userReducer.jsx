@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Notification from '../../components/Notification/Notification.jsx';
 import { history } from '../../index.js';
 import { ACCESS_TOKEN, getStoreJSON, http, setStore, setStoreJSON, USER_LOGIN } from '../../util/config.jsx';
 import { DISPLAY_LOADING, HIDE_LOADING } from './loadingReducer.jsx';
 
 const initialState = {
   userLogin: getStoreJSON(USER_LOGIN),
+  messError: '',
 };
 
 const userReducer = createSlice({
@@ -16,10 +18,13 @@ const userReducer = createSlice({
       let userLogin = action.payload;
       state.userLogin = userLogin;
     },
+    setMessError: (state, action) => {
+      state.messError = action.payload;
+    },
   },
 });
 
-export const { setUserLogin } = userReducer.actions;
+export const { setUserLogin, setMessError } = userReducer.actions;
 
 export default userReducer.reducer;
 
@@ -41,7 +46,7 @@ export const signupApi = (userSignup) => {
       setTimeout(() => {
         const hideLoading = HIDE_LOADING();
         dispatch(hideLoading);
-      }, 3000);
+      }, 2000);
     } catch (err) {
       console.log(err);
     }
@@ -70,6 +75,8 @@ export const signinApi = (userLogin) => {
       }, 3000);
     } catch (err) {
       console.log(err);
+      const action = setMessError('Email hoặc mật khẩu không đúng!');
+      dispatch(action);
     }
   };
 };

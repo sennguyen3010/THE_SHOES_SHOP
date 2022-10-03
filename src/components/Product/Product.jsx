@@ -22,9 +22,9 @@ export default function Product(props) {
         <div className="row">
           <div className="col-6 pe-0">
             <div className="productFeature-item-bottom bottom-bg-yellow">
-              <Link to={`/detail/${prod?.id}`} className="productFeature-btn item-bottom-text">
+              <NavLink to={`/detail/${prod?.id}`} className="productFeature-btn item-bottom-text">
                 Buy now
-              </Link>
+              </NavLink>
             </div>
           </div>
           <div className="col-6 ps-0">

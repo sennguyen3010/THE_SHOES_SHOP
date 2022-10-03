@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { getProfileApi, updateProfile } from '../../redux/reducers/userReducer';
 import { useEffect } from 'react';
 import moment from 'moment';
-import Pagination from 'react-bootstrap/Pagination';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -14,10 +13,6 @@ export default function Profile() {
 
   const schema = Yup.object({
     email: Yup.string().required('Email không được bỏ trống!').email('Email không đúng định dạng!'),
-    password: Yup.string()
-      .required('Password không được bỏ trống!')
-      .min(3, 'Password từ 3-32 ký tự!')
-      .max(32, 'Password từ 3-32 ký tự!'),
 
     name: Yup.string().required('Name không được bỏ trống!'),
     phone: Yup.string().required('Phone không được bỏ trống!'),
@@ -57,7 +52,6 @@ export default function Profile() {
           <table className="table text-center align-middle">
             <thead className="carts-thead">
               <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Img</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
@@ -69,7 +63,6 @@ export default function Profile() {
               {order.orderDetail.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td>{item.id}</td>
                     <td>
                       <img className="carts-img" src={item.image} alt="..." />
                     </td>
@@ -123,7 +116,7 @@ export default function Profile() {
                   placeholder="Password"
                   disabled
                 />
-                <span className="mess_err">{errors.password?.message}</span>
+                {/* <span className="mess_err">{errors.password?.message}</span> */}
               </div>
             </div>
 
@@ -172,26 +165,9 @@ export default function Profile() {
             <h3 className="profile-history-title-black">Favourite</h3>
           </div>
           {renderOrderHistory()}
-
-          <Pagination>
-            <Pagination.First />
-            <Pagination.Prev />
-            <Pagination.Item>{1}</Pagination.Item>
-            <Pagination.Ellipsis />
-
-            <Pagination.Item>{10}</Pagination.Item>
-            <Pagination.Item>{11}</Pagination.Item>
-            <Pagination.Item active>{12}</Pagination.Item>
-            <Pagination.Item>{13}</Pagination.Item>
-            <Pagination.Item disabled>{14}</Pagination.Item>
-
-            <Pagination.Ellipsis />
-            <Pagination.Item>{20}</Pagination.Item>
-            <Pagination.Next />
-            <Pagination.Last />
-          </Pagination>
         </div>
       </div>
     </section>
   );
 }
+//

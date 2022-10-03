@@ -9,9 +9,7 @@ import { getProductDetailApi, setAddToCart, setAmount } from '../../redux/reduce
 export default function Detail() {
   let { productDetail } = useSelector((state) => state.productReducer);
   let { userLogin } = useSelector((state) => state.userReducer);
-  // let newProductDetail = { ...productDetail, number: 1 };
-  // console.log(newProductDetail);
-  //
+
   const dispatch = useDispatch();
 
   const params = useParams();

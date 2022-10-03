@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { NavLink } from 'react-router-dom';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { signinApi, signinApiFacebook } from '../../redux/reducers/userReducer';
+import Notification from '../../components/Notification/Notification';
 
 export default function Login() {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const { messError } = useSelector((state) => state.userReducer);
+  console.log(messError);
 
   const schema = Yup.object({
     email: Yup.string().required('Email không được bỏ trống!').email('Email không đúng định dạng!'),
@@ -42,6 +45,7 @@ export default function Login() {
     <section className="register">
       <div className="container">
         <div className="row register-layout">
+          <Notification messError={messError} />
           <div className="col-12 col-lg-6 pd-right">
             <form className="register-form" id="loginForm" onSubmit={handleSubmit(onSubmit)}>
               <h2 className="register-title">Login</h2>

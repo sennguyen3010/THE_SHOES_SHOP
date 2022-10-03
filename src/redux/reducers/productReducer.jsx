@@ -1,6 +1,6 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getStoreJSON, http, PRODUCT_CART, setStoreJSON } from '../../util/config';
+import { clearLocalStorage, getStoreJSON, http, PRODUCT_CART, setStoreJSON } from '../../util/config';
 
 const initialState = {
   arrProduct: [],
@@ -67,15 +67,21 @@ const productReducer = createSlice({
       setStoreJSON(PRODUCT_CART, state.arrOrder);
     },
 
-    // setSubmitOrder: (state, action) => {
-    //   const newInfoOrder = action.payload;
-    //   state.infoOrder = newInfoOrder;
-    // },
+    setSubmitOrder: (state, action) => {
+      state.arrOrder = [];
+    },
   },
 });
 
-export const { setArrProductAction, setProductDetail, setAmount, setAmountCart, setAddToCart, deleteProductCart } =
-  productReducer.actions;
+export const {
+  setArrProductAction,
+  setProductDetail,
+  setAmount,
+  setAmountCart,
+  setAddToCart,
+  deleteProductCart,
+  setSubmitOrder,
+} = productReducer.actions;
 
 export default productReducer.reducer;
 
@@ -114,13 +120,16 @@ export const getProductDetailApi = (id) => {
 };
 
 export const postUserOrder = (order) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       const result = await axios({
         url: 'https://shop.cyberlearn.vn/api/Users/order',
         method: 'POST',
         data: order,
       });
+      clearLocalStorage(PRODUCT_CART);
+      const action = setSubmitOrder();
+      dispatch(action);
     } catch (err) {
       console.log(err);
     }
