@@ -92,3 +92,9 @@
     background-color: $bg-c3-primary;
   }
 }
+
+@media (max-width: 768px) {
+  .productFeature-title {
+    font-size: 24px;
+  }
+}

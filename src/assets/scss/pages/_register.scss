@@ -237,7 +237,7 @@
           &:focus-visible {
           }
           &::placeholder {
-            @include text($text-2xl, $text-regular, $text-c1-dark);
+            @include text($text-base, $text-regular, $text-c3-dark);
           }
         }
         .register-forced {
@@ -274,6 +274,7 @@
       }
       .register-btnSubmit {
         .btnSubmit {
+          font-size: 16px;
           &:hover {
           }
           &:focus {
@@ -295,7 +296,7 @@
           &:focus-visible {
           }
           &::placeholder {
-            @include text($text-xl, $text-regular, $text-c1-dark);
+            @include text($text-base, $text-regular, $text-c3-dark);
           }
         }
         .register-forced {
@@ -334,7 +335,8 @@
         .btnSubmit {
           margin-top: 60px;
           padding: 8px 40px;
-          @include text($text-2xl, $text-regular, $text-c3-light);
+          // @include text($text-2xl, $text-regular, $text-c3-light);
+          font-size: 16px;
 
           &:hover {
           }

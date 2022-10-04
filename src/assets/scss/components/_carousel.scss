@@ -98,7 +98,7 @@
         .carousel-item_card {
           height: 100%;
           img {
-            margin-left: 80px;
+            margin-left: 50px;
           }
           .carousel-content {
             display: flex;
@@ -131,6 +131,8 @@
 
 @media (max-width: $bp-md) {
   .carousels {
+    margin-top: 150px;
+
     .carousel-layout {
       .carousel-circle {
         .carousel-circle-item {
@@ -143,7 +145,7 @@
       .carousel-layout-pd {
         .carousel-item_card {
           img {
-            margin-left: 130px;
+            // margin-left: 130px;
           }
           .carousel-content {
             h5 {
@@ -188,7 +190,7 @@
         .carousel-item_card {
           height: 400px;
           img {
-            margin-left: 80px;
+            // margin-left: 80px;
           }
           .carousel-content {
             h5 {
