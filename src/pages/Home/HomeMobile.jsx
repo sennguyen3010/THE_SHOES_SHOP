@@ -19,7 +19,7 @@ export default function HomeMobile() {
     return arrProduct.map((prod, index) => {
       return (
         <div className="d-flex mt-2" key={index}>
-          <div className="w-25">
+          {/* <div className="w-25">
             <img className="w-100" src={prod.image} alt="" />
           </div>
           <div className="w-75">
@@ -28,7 +28,8 @@ export default function HomeMobile() {
           </div>
           <NavLink className="btn btn-dark" to={`/detail/${prod.id}`}>
             Detail
-          </NavLink>
+          </NavLink> */}
+          hahah
         </div>
       );
     });

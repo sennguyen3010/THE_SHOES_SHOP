@@ -16,13 +16,14 @@ export default function ResponsiveItem(props) {
       });
       window.onresize = handleOnResize;
       return () => {
-        window.removeEventListener('resize', handleOnResize);
+        window.removeEventListener('resize');
       };
     };
   }, []);
 
   if (screen.width < 768 && props.componentMobile) {
     //load component mobile
+
     return <props.componentMobile />;
   }
   //ngược lại thì load component thường

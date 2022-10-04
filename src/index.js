@@ -33,10 +33,10 @@ root.render(
       <ScrollToTop>
         <Routes>
           <Route path="" element={<HomeTemplate />}>
-            {/* <Route path="" element={<ResponsiveItem component={HomeTemplate} componentMobile={HomeTemplateMobile} />}>
-          <Route index element={<ResponsiveItem component={Home} componentMobile={HomeMobile} />}></Route> */}
+            {/* <Route path="" element={<ResponsiveItem component={HomeTemplate} componentMobile={HomeTemplateMobile} />}> */}
+            <Route index element={<ResponsiveItem component={Home} componentMobile={HomeMobile} />}></Route>
             {/* <Route index element={<HomeMobile />}></Route> */}
-            <Route path="" element={<Home />}></Route>
+            {/* <Route path="" element={<Home />}></Route> */}
             <Route path="register" element={<Register />}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="search" element={<Search />}></Route>
