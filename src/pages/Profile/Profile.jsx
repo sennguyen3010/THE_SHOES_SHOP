@@ -89,7 +89,7 @@ export default function Profile() {
           <h2 className="productFeature-title mb-0">Profile</h2>
 
           <form className="row register-form" id="registerForm" onSubmit={handleSubmit(onSubmit)}>
-            <div className="profile-avatar col-2">
+            <div className="profile-avatar col-6 col-md-2">
               <img className="profile-avatar-img" src={userLogin?.avatar} alt="avatar" />
             </div>
             <div className="col-12 col-lg-5">

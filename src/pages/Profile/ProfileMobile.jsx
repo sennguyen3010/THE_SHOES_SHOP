@@ -89,7 +89,7 @@ export default function ProfileMobile() {
           <h2 className="productFeature-title mb-0">Profile</h2>
 
           <form className="row register-form" id="registerForm" onSubmit={handleSubmit(onSubmit)}>
-            <div className="profile-avatar col-2">
+            <div className="profile-avatar col-6 col-md-2">
               <img className="profile-avatar-img" src={userLogin?.avatar} alt="avatar" />
             </div>
             <div className="col-12 col-lg-5">
@@ -139,17 +139,19 @@ export default function ProfileMobile() {
                 <span className="mess_err">{errors.phone?.message}</span>
               </div>
 
-              <fieldset name="gender" className="profile-gender register-gender" id="gender">
-                <p>Gender</p>
-                <p>
-                  <input {...register('gender')} type="radio" id="male" value={true} defaultChecked />
-                  <label htmlFor="male">Male</label>
-                </p>
-                <p>
-                  <input {...register('gender')} type="radio" id="female" value={false} />
-                  <label htmlFor="female">Female</label>
-                </p>
-                <div className="register-btnSubmit">
+              <fieldset name="gender" className="profile-gender register-gender profile_res" id="gender">
+                <div className="d-flex w-100 justify-content-around">
+                  <p>Gender</p>
+                  <p>
+                    <input {...register('gender')} type="radio" id="male" value={true} defaultChecked />
+                    <label htmlFor="male">Male</label>
+                  </p>
+                  <p>
+                    <input {...register('gender')} type="radio" id="female" value={false} />
+                    <label htmlFor="female">Female</label>
+                  </p>
+                </div>
+                <div className="register-btnSubmit profile-btnSubmit_res">
                   <button type="submit" className="profile-btn btnSubmit" id="btnSubmit">
                     Update
                   </button>

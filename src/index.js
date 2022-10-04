@@ -35,7 +35,10 @@ root.render(
         <Routes>
           <Route path="" element={<HomeTemplate />}>
             {/* <Route path="" element={<ResponsiveItem component={HomeTemplate} componentMobile={HomeTemplateMobile} />}> */}
-            <Route element={<ResponsiveItem component={Profile} componentMobile={ProfileMobile} />}></Route>
+            <Route
+              path="profile"
+              element={<ResponsiveItem component={Profile} componentMobile={ProfileMobile} />}
+            ></Route>
             {/* <Route index element={<HomeMobile />}></Route> */}
             <Route index path="" element={<Home />}></Route>
             <Route path="register" element={<Register />}></Route>
@@ -44,7 +47,7 @@ root.render(
             <Route path="detail">
               <Route path=":id" element={<Detail />}></Route>
             </Route>
-            <Route path="profile" element={<Profile />}></Route>
+            {/* <Route path="profile" element={<Profile />}></Route> */}
             <Route path="carts" element={<Carts />}></Route>
             <Route path="*" element={<Navigate to="/" />}></Route>
             {/* </Route> */}
