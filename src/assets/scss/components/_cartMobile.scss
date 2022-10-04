@@ -26,13 +26,13 @@
   }
 }
 .cartMobile-btn-del {
-  @include text(13px, $text-medium, $text-c2-light);
+  @include text(14px, $text-medium, $text-c2-light);
   background-color: #eb5757;
   transition: all 0.2s;
   border: none;
   border-radius: 5px;
   height: 36px;
-  width: 70px;
+  width: 50px;
 
   &:hover {
     background-color: #c93737;
@@ -40,5 +40,13 @@
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(#ae18e2, 0.5);
     background-color: #8c15b5;
+  }
+}
+
+@media (max-width: 576px) {
+  .cartMobile-content {
+    &_name {
+      @include text(14px, $text-medium, $text-c1-dark);
+    }
   }
 }

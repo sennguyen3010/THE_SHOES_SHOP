@@ -20,13 +20,12 @@ export default function CartMobile(props) {
     return (
       <div key={index} className="cartMobile">
         <div className="cartMobile-layout row">
-          <div className="col-4">
-            <div className="cartMobile-image d-flex align-items-center justify-content-around">
-              <input className="form-check-input carts-check" type="checkbox" defaultValue id="flexCheckDefault" />
+          <div className="col-4 col-md-3">
+            <div className="cartMobile-image d-flex align-items-center justify-content-center">
               <img className="carts-img cartMobile-img" src={item.image} alt="..." />
             </div>
           </div>
-          <div className="col-8 d-flex justify-content-between align-items-center">
+          <div className="col-8 col-md-9 d-flex justify-content-between align-items-center">
             <div className="cartMobile-content">
               <p className="cartMobile-content_name">{item.name}</p>
               <p className="cartMobile-content_price">{item.price} $</p>
@@ -41,9 +40,11 @@ export default function CartMobile(props) {
                 <span>Total: </span> <span className="cartMobile-content_price">{item.number * item.price} $</span>
               </div>
             </div>
-            <button className="cartMobile-btn-del" onClick={() => deleteProduct(item.id)}>
-              DELETE
-            </button>
+            <div>
+              <button className="cartMobile-btn-del" onClick={() => deleteProduct(item.id)}>
+                <i className="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>

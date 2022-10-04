@@ -43,3 +43,14 @@
   @include text($text-xl, $text-regular, #7d0db1);
   margin-bottom: 20px;
 }
+
+@media (max-width: 1200px) {
+  .profile_res {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .profile-btnSubmit_res {
+    margin-top: 20px;
+  }
+}

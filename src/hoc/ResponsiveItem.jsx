@@ -22,7 +22,7 @@ export default function ResponsiveItem(props) {
     };
   }, []);
 
-  if (screen.width < 768 && props.componentMobile) {
+  if (screen.width <= 768 && props.componentMobile) {
     return <props.componentMobile />;
   }
 

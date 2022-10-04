@@ -7,7 +7,7 @@ import { getProfileApi, updateProfile } from '../../redux/reducers/userReducer';
 import { useEffect } from 'react';
 import moment from 'moment';
 
-export default function Profile() {
+export default function ProfileMobile() {
   const dispatch = useDispatch();
   const { userLogin } = useSelector((state) => state.userReducer);
 
@@ -49,34 +49,34 @@ export default function Profile() {
           <p className="profile-placed-title">
             + Orders have been placed on {moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}
           </p>
-          <table className="table text-center align-middle">
-            <thead className="carts-thead">
-              <tr>
-                <th scope="col">Img</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {order.orderDetail?.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>
-                      <img className="carts-img" src={item.image} alt="..." />
-                    </td>
-                    <td>{item.name}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      <span className="carts-amount">{item.quantity}</span>
-                    </td>
-                    <td>{item.quantity * item.price}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          {order.orderDetail?.map((item, index) => {
+            return (
+              <div key={index} className="cartMobile">
+                <div className="cartMobile-layout row">
+                  <div className="col-4 col-md-3">
+                    <div className="cartMobile-image d-flex align-items-center justify-content-center">
+                      <img className="carts-img cartMobile-img" src={item.image} alt="..." />
+                    </div>
+                  </div>
+                  <div className="col-8 col-md-9 d-flex justify-content-between align-items-center">
+                    <div className="cartMobile-content">
+                      <p className="cartMobile-content_name">{item.name}</p>
+                      <p className="cartMobile-content_price">{item.price} $</p>
+                      <div>
+                        <span>Quantity: </span>
+                        <span className="carts-amount">{item.quantity}</span>
+                      </div>
+
+                      <div className="mt-4">
+                        <span>Total: </span>
+                        <span className="cartMobile-content_price">{item.quantity * item.price} $</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       );
     });
@@ -139,19 +139,17 @@ export default function Profile() {
                 <span className="mess_err">{errors.phone?.message}</span>
               </div>
 
-              <fieldset name="gender" className="profile-gender register-gender profile_res" id="gender">
-                <div className="d-flex w-100 justify-content-around">
-                  <p>Gender</p>
-                  <p>
-                    <input {...register('gender')} type="radio" id="male" value={true} defaultChecked />
-                    <label htmlFor="male">Male</label>
-                  </p>
-                  <p>
-                    <input {...register('gender')} type="radio" id="female" value={false} />
-                    <label htmlFor="female">Female</label>
-                  </p>
-                </div>
-                <div className="register-btnSubmit profile-btnSubmit_res">
+              <fieldset name="gender" className="profile-gender register-gender" id="gender">
+                <p>Gender</p>
+                <p>
+                  <input {...register('gender')} type="radio" id="male" value={true} defaultChecked />
+                  <label htmlFor="male">Male</label>
+                </p>
+                <p>
+                  <input {...register('gender')} type="radio" id="female" value={false} />
+                  <label htmlFor="female">Female</label>
+                </p>
+                <div className="register-btnSubmit">
                   <button type="submit" className="profile-btn btnSubmit" id="btnSubmit">
                     Update
                   </button>

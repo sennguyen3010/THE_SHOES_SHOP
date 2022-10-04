@@ -46,7 +46,7 @@ export default function Cart(props) {
               className="carts-btn-del carts-btn-action carts-btn-count btnSubmit"
               onClick={() => deleteProduct(item.id)}
             >
-              DELETE
+              <i className="fa-solid fa-trash-can"></i>
             </button>
           </td>
         </tr>

@@ -23,6 +23,7 @@ import HomeMobile from './pages/Home/HomeMobile';
 import ResponsiveItem from './hoc/ResponsiveItem';
 import HomeTemplateMobile from './templates/HomeTemplateMobile';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import ProfileMobile from './pages/Profile/ProfileMobile';
 
 export const history = createBrowserHistory();
 
@@ -34,7 +35,7 @@ root.render(
         <Routes>
           <Route path="" element={<HomeTemplate />}>
             {/* <Route path="" element={<ResponsiveItem component={HomeTemplate} componentMobile={HomeTemplateMobile} />}> */}
-            {/* <Route index element={<ResponsiveItem component={Home} componentMobile={HomeMobile} />}></Route> */}
+            <Route index element={<ResponsiveItem component={Profile} componentMobile={ProfileMobile} />}></Route>
             {/* <Route index element={<HomeMobile />}></Route> */}
             <Route path="" element={<Home />}></Route>
             <Route path="register" element={<Register />}></Route>
