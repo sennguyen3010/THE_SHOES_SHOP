@@ -14,19 +14,17 @@ export default function ResponsiveItem(props) {
         width: window.innerWidth,
         height: window.innerHeight,
       });
-      window.onresize = handleOnResize;
-      return () => {
-        window.removeEventListener('resize');
-      };
+    };
+
+    window.onresize = handleOnResize;
+    return () => {
+      window.removeEventListener('resize', handleOnResize);
     };
   }, []);
 
   if (screen.width < 768 && props.componentMobile) {
-    //load component mobile
-
     return <props.componentMobile />;
   }
-  //ngược lại thì load component thường
 
   return <props.component />;
 }

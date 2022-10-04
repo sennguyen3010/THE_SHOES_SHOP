@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Cart from '../../components/Cart/Cart';
+import CartMobile from '../../components/Cart/CartMobile';
 import Notification from '../../components/Notification/Notification';
+import ResponsiveItem from '../../hoc/ResponsiveItem';
 import { postUserOrder } from '../../redux/reducers/productReducer';
 
 export default function Carts() {
@@ -36,7 +38,8 @@ export default function Carts() {
         <div className="carts-layout">
           <h2 className="carts-title">Carts</h2>
 
-          <Cart />
+          <ResponsiveItem component={Cart} componentMobile={CartMobile} />
+          {/* <Cart /> */}
 
           <div className="text-end">
             <button className="carts-btn-order" onClick={submitOrder}>

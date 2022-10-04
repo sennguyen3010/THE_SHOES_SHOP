@@ -1,0 +1,44 @@
+@import '../themes/variable';
+@import '../themes/mixin';
+
+.cartMobile {
+  padding: 0 12px;
+  margin-bottom: 20px;
+}
+.cartMobile-layout {
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px 0;
+}
+
+.cartMobile-image {
+}
+.cartMobile-img {
+}
+
+.cartMobile-content {
+  &_name {
+    @include text($text-base, $text-medium, $text-c1-dark);
+  }
+  &_price {
+    @include text($text-base, $text-semibold, #f27a10);
+    margin: 5px 0;
+  }
+}
+.cartMobile-btn-del {
+  @include text(13px, $text-medium, $text-c2-light);
+  background-color: #eb5757;
+  transition: all 0.2s;
+  border: none;
+  border-radius: 5px;
+  height: 36px;
+  width: 70px;
+
+  &:hover {
+    background-color: #c93737;
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(#ae18e2, 0.5);
+    background-color: #8c15b5;
+  }
+}
