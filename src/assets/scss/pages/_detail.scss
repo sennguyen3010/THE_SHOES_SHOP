@@ -25,6 +25,7 @@
     }
     .product-detail-sizegroup {
       display: flex;
+      flex-wrap: wrap;
     }
     .product-detail-size {
       background-color: $bg-c5-primary;
@@ -77,4 +78,7 @@
       }
     }
   }
+}
+
+@media (max-width: 768px) {
 }

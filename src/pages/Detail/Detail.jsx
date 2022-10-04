@@ -38,17 +38,19 @@ export default function Detail() {
   const renderProductDetail = () => {
     return (
       <>
-        <div className="product-detail-prod col-4">
-          <img className="product-detail-img" src={productDetail?.image} alt="..." />
+        <div className="col-12 col-md-4">
+          <div className="product-detail-prod">
+            <img className="product-detail-img" src={productDetail?.image} alt="..." />
+          </div>
         </div>
-        <div className="product-detail-content col-6">
+        <div className="product-detail-content col-12 col-md-6">
           <h3 className="product-detail-title">{productDetail?.name}</h3>
           <p className="product-detail-des">{productDetail?.shortDescription}</p>
           <h3 className="product-detail-available">Available size</h3>
           <div className="product-detail-sizegroup">
             {productDetail?.size?.map((size, index) => {
               return (
-                <p key={index} className="product-detail-size">
+                <p key={index} className="product-detail-size mt-2">
                   {size}
                 </p>
               );
