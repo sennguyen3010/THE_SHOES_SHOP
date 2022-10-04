@@ -57,21 +57,27 @@ export default function Search() {
     <section className="search">
       <div className="container">
         <p className="search-p">Search</p>
-        <div>
-          <input className="search-input" placeholder="Product name ..." onChange={handleChange} />
-          <button className="search-btn btnSubmit">SEARCH</button>
-          <h2 className="search-title productFeature-title mb-0">Search result</h2>
-          <p className="search-p mt-4">Price</p>
-          <select
-            className="search-select search-input form-select"
-            aria-label="Default select example"
-            onChange={(e) => setValueSort(e.target.value)}
-          >
-            {/* giam */}
-            <option value="desc">Decrease</option>
-            {/* tang */}
-            <option value="asc">Ascending</option>
-          </select>
+        <div className="row">
+          <div className="col-8">
+            <input className="search-input" placeholder="Product name ..." onChange={handleChange} />
+          </div>
+          <div className="col-4">
+            <button className="search-btn btnSubmit">SEARCH</button>
+          </div>
+          <div className="col-12">
+            <h2 className="search-title productFeature-title mb-0">Search result</h2>
+            <p className="search-p mt-4">Price</p>
+            <select
+              className="search-select search-input form-select"
+              aria-label="Default select example"
+              onChange={(e) => setValueSort(e.target.value)}
+            >
+              {/* giam */}
+              <option value="desc">Decrease</option>
+              {/* tang */}
+              <option value="asc">Ascending</option>
+            </select>
+          </div>
           <div className="row gy-4 productFeature-group">{renderProductSearch()}</div>
         </div>
       </div>
